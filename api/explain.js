@@ -5,9 +5,11 @@ export default async function handler(req, res) {
 
   const { violationCode, violationDescription } = req.body
 
-  if (!violationCode || !violationDescription) {
-    return res.status(400).json({ error: 'Missing violation data' })
+  if (!violationCode) {
+    return res.status(400).json({ error: 'Missing violation code' })
   }
+
+  const description = violationDescription || 'No description provided by NYC Health Department.'
 
   const apiKey = process.env.ANTHROPIC_API_KEY
   if (!apiKey) {
@@ -30,7 +32,7 @@ export default async function handler(req, res) {
         messages: [
           {
             role: 'user',
-            content: `Violation code: ${violationCode}\nOfficial description: ${violationDescription}\n\nExplain this to a diner in 2 plain-English sentences.`,
+            content: `Violation code: ${violationCode}\nOfficial description: ${description}\n\nExplain this to a diner in 2 plain-English sentences.`,
           },
         ],
       }),
