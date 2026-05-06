@@ -25,7 +25,7 @@ export default async function handler(req, res) {
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-sonnet-4-5',
         max_tokens: 150,
         system:
           'You explain NYC restaurant health inspection violations in plain, direct English for a diner deciding whether to eat somewhere. 2 sentences max. No jargon. First sentence: what the actual problem is. Second sentence: the health risk to a diner. Be honest but not alarmist. Never start with "I".',
